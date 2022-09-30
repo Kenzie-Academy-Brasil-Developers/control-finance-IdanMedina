@@ -55,4 +55,15 @@ body {
     max-width: 43rem;
     margin: 0 1rem;
   }
+  header {
+    padding: 1.25rem 1rem;
+    flex-direction: column;
+    gap:1.25rem;
+  }
+  h1 {
+    margin-left: auto;
+  }
+  .asign-button {
+    width: 100%;
+}
 }

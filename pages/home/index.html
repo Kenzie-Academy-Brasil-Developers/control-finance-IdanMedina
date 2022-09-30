@@ -1,19 +1,49 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Control Finance - Seu controle financeiro"
+    />
+    <link
+      rel="shortcut icon"
+      href="../../assets/favicon.ico"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="../../styles/globalStyles.css" />
+    <link rel="stylesheet" href="../../styles/text.css" />
+    <link rel="stylesheet" href="../../styles/buttons.css" />
+    <link rel="stylesheet" href="./index.css" />
     <title>Control Finance</title>
-    <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
-    <meta name="description" content="Control Finance - Seu controle financeiro">
-    <link rel="stylesheet" href="/styles/globalStyles.css">
-    <link rel="stylesheet" href="index.css">
-</head>
-<body>
-    <main id="app"></main>
-    <script src="/scripts/modal.js"></script>
-    <script src="valuesData.js"></script>
-    <script src="index.js"></script>
-</body>
+  </head>
+  <body>
+    <header>
+      <h1><span>Control</span><p class="invisible">-</p><p>Finance</p></h1>
+      <button type="submit" class="asign-button" data-modal-control="asign">Registrar novo valor</button>
+    </header>
+    <main id="app" class="container">
+      <div class="summary">
+        <h2>Resumo financeiro</h2>
+        <div class="filter">
+          <button type="submit" class="filter-button">Todos</button>
+          <button type="submit" class="filter-button">Entradas</button>
+          <button type="submit" class="filter-button">Saídas</button>
+        </div>
+      </div>
+      <div class="total-value">
+        <h3>Soma dos valores</h3>
+        <p>R$ 0,00</p>
+      </div>
+      <span class="no-value">
+        <h3>Nenhum valor cadastrado</h3>
+        <p>Registrar novo valor</p>
+      </span>
+    </main>
+    <script src="../../scripts/modal.js"></script>
+    <script src="./valuesData.js"></script>
+    <script src="./index.js"></script>
+  </body>
 </html>
