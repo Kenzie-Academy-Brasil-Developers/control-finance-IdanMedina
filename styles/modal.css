@@ -1,3 +1,7 @@
+.no-modal {
+    display: none;
+}
+
 .show-modal {
     position:fixed;
     display: flex;
@@ -5,8 +9,9 @@
     align-items: center;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(00, 00, 00, 0.5);
+    background-color: var(--color-grey-1-opacity-5);
     top: 0;
+    margin: 0 auto;
     z-index: 1;
     animation: fadeInModal 1s linear;
     } 
@@ -19,14 +24,44 @@
     width: 428px;
     min-height: 350px;
     gap: 32px;
-    background: var(--color-white-fixed);
-    border-radius: 8px;
-    padding: 16px 10px;
+    background: var(--fixed-white);
+    border-radius: var(--radius-1);
+    padding: 24px;
 }
 
 .show-modal .modal {
     animation: moveModal 1s ease;
 } 
+
+.head-btn {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.input-value {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.type-value {
+    display: flex;
+    gap:12px;
+    align-items: center;
+}
+
+.type-value h4{
+    margin-right: 4px;
+}
+
+.submit {
+    margin-left: auto;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+}
 
 @keyframes moveModal { 
     0%{transform: translateY(-70%);
@@ -42,4 +77,23 @@
 @keyframes fadeInModal {
     0% {opacity:0}
     100% {opacity: 1}
+}
+@media (max-width: 700px) { 
+    .type-value{
+        flex-direction: column;
+        justify-content: flex-start;
+        width: 100%;
+      }
+      .type-value h4{
+        margin-right: auto;
+      }
+      .submit{
+    width: 100%;
+      margin-left: 0;
+      justify-content: space-between;
+      }
+      .modal{
+        width: 343px;
+        min-height: 0;
+      }
 }

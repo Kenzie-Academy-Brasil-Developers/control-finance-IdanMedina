@@ -36,3 +36,32 @@ h1 > p {
     line-height: var(--font-line-height-1);
     color: var(--color-grey-1);
 }
+
+.modal h3 {
+    color: var(--color-grey-1);
+    font-weight: var(--font-weight-1);
+    font-size: var(--font-size-2);
+    line-height: var(--font-line-height-1);
+}
+
+.modal p {
+    color: var(--color-grey-2);
+    font-weight: var(--font-weight-3);
+    font-size: var(--font-size-3);
+    line-height: var(--font-line-height-1);
+}
+
+.input-value h4 {
+    color: var(--color-grey-1);
+    font-weight: var(--font-weight-2);
+    font-size: var(--font-size-2);
+    line-height: var(--font-line-height-1);
+}
+
+.input-value input {
+    color: var(--color-grey-2);
+    font-weight: var(--font-weight-3);
+    font-size: var(--font-size-2);
+    line-height: var(--font-line-height-1);
+    padding-left: 16px;
+}
