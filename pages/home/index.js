@@ -21,6 +21,7 @@ submit.addEventListener("click", () => {
   wideModal.classList.toggle("no-modal");
 
   insertedValues.forEach((j) => {
+    console.log(j)
     register(j);
   });
   displaySumValue(insertedValues)
