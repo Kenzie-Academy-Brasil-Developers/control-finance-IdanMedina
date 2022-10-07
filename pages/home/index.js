@@ -3,92 +3,102 @@ const ul = document.getElementById("ul");
 const submit = document.getElementById("submit");
 const cancel = document.getElementById("cancel");
 
-let idFunction = insertedValues.length + 1;
-let submitItem = {id: idFunction, value: input.value, categoryID: 0}
+let idFunction = insertedValuesfiltered.length + 1;
+let submitItem = { id: idFunction, value: input.value, categoryID: 0 };
 
-cancel.addEventListener("click", () =>{
-    wideModal.classList.toggle("no-modal")
-})
+cancel.addEventListener("click", () => {
+  wideModal.classList.toggle("no-modal");
+});
 
 submit.addEventListener("click", () => {
-    console.log(submitItem)
-   insertedValues.push(submitItem)
-    wideModal.classList.toggle("no-modal")
-})
+  submitItem.id = idFunction;
+  submitItem.value = input.value;
+  insertedValuesfiltered = [...insertedValuesfiltered, submitItem];
+  wideModal.classList.toggle("no-modal");
+  insertedValuesfiltered.forEach((j) => {
+    register(j);
+  });
+});
 
 const insertBtn = document.querySelectorAll("[data-control-modal]");
-for(let i = 0; i < insertBtn.length; i++){
-let btnCategory = insertBtn[i].getAttribute("data-control-modal")
-insertBtn[i].addEventListener("click", () =>{
+for (let i = 0; i < insertBtn.length; i++) {
+  let btnCategory = insertBtn[i].getAttribute("data-control-modal");
+  insertBtn[i].addEventListener("click", () => {
     insertBtn[i].classList.toggle("active");
-    submitItem.id = idFunction;
-    submitItem.value = input.value;
-    submitItem.categoryID = parseFloat(btnCategory);
-})
+    submitItem.categoryID = parseInt(btnCategory);
+  });
 }
 
-
-function showCategory(value){
-    let currentCategory = ""
-    valuesCategory.forEach((category, index) => {
-        if(value == index+1){
-            currentCategory = category
-        }
-    })
-    return currentCategory
+function showCategory(value) {
+  let currentCategory = "";
+  valuesCategory.forEach((category, index) => {
+    if (value == index + 1) {
+      currentCategory = category;
+    }
+  });
+  return currentCategory;
 }
 
 function register(element) {
-    const li = document.createElement("li");
-    const newValue = document.createElement("span");
-    const boxCtg = document.createElement("div");
-    const category = document.createElement("span");
-    const trash = document.createElement("span");
-    const img = document.createElement("img");
+  const li = document.createElement("li");
+  const newValue = document.createElement("span");
+  const boxCtg = document.createElement("div");
+  const category = document.createElement("span");
+  const trash = document.createElement("span");
+  const img = document.createElement("img");
 
-    newValue.classList.add("new-value")
-    category.classList.add("category")
-    trash.classList.add("trash")
+  newValue.classList.add("new-value");
+  category.classList.add("category");
+  trash.classList.add("trash");
 
-    newValue.innerText = `R$ ${element.value.toFixed(2)}`;
-    category.innerText = showCategory(element.categoryID);
-    img.src="../../assets/trash.png"
-    img.id = element.id
-    trash.id = element.id
+  newValue.innerText = `R$ ${element.value.toFixed(2)}`;
+  category.innerText = showCategory(element.categoryID);
+  img.src = "../../assets/trash.png";
+  img.id = element.id - 1;
+  trash.id = element.id - 1;
+  trashBtn(trash);
 
-    boxCtg.appendChild(category)
-    trash.appendChild(img);
-    li.append(newValue, boxCtg, trash);
-    ul.appendChild(li)
+  boxCtg.appendChild(category);
+  trash.appendChild(img);
+  li.append(newValue, boxCtg, trash);
+  ul.appendChild(li);
 }
 
-function noRegister(){
-    if(insertedValuesfiltered.length == 0){
-        const h3 = document.createElement("h3");
-        const p = document.createElement("p")
+function noRegister() {
+  const h3 = document.createElement("h3");
+  const p = document.createElement("p");
 
-        ul.classList.add("no-value")
+  ul.classList.add("no-value");
 
-        h3.innerText = "Nenhum valor cadastrado";
-        p.innerText = "Registrar novo valor"
+  h3.innerText = "Nenhum valor cadastrado";
+  p.innerText = "Registrar novo valor";
 
-        ul.append(h3, p)
+  ul.append(h3, p);
 }
+
+if (insertedValuesfiltered.length == 0) {
+  noRegister();
 }
-noRegister()
 
-
-const trash = document.querySelectorAll(".trash")
-/* trash.forEach((e) => {
-    e.addEventListener("click", (e) => {
-    const id = e.target.id;
-    const del = id - 1;
-    console.log(id)
-    console.log(del)
-    insertedValuesfiltered.splice(del, 1)
-    console.log(insertedValuesfiltered)
-    ul.innerHTML="";
-    register(insertedValuesfiltered)
-})
-})  */
-
+function trashBtn(e) {
+  e.addEventListener("click", (event) => {
+    const id = event.target.id;
+    
+    if (insertedValuesfiltered.length == 1) {
+      insertedValuesfiltered.splice(0, 1);
+      ul.innerHTML = "";
+      insertedValuesfiltered.forEach((j) => {
+        register(j);
+        noRegister()
+      })
+       displaySumValue(insertedValuesfiltered);
+    } else {
+      insertedValuesfiltered.splice(id, 1);
+      ul.innerHTML = "";
+      insertedValuesfiltered.forEach((j) => {
+        register(j);
+        displaySumValue(insertedValuesfiltered);
+      });
+    }
+  });
+}
