@@ -7,6 +7,7 @@ if(insertedValuesfiltered.length == 0){
 }
 
 const sum = database.reduce((acc, cur)=>{
+    console.log(cur.value)
     return acc + cur.value
 },0)
 

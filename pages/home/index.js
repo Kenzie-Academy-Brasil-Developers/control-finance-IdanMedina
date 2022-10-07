@@ -3,29 +3,35 @@ const ul = document.getElementById("ul");
 const submit = document.getElementById("submit");
 const cancel = document.getElementById("cancel");
 
-let idFunction = insertedValuesfiltered.length + 1;
-let submitItem = { id: idFunction, value: input.value, categoryID: 0 };
+let idFunction = insertedValues.length + 1;
+let submitItem = { id: idFunction, value: 0, categoryID: 0 };
 
 cancel.addEventListener("click", () => {
   wideModal.classList.toggle("no-modal");
 });
 
 submit.addEventListener("click", () => {
+    ul.innerHTML= "";
+    ul.classList.remove("no-value");
+
   submitItem.id = idFunction;
-  submitItem.value = input.value;
-  insertedValuesfiltered = [...insertedValuesfiltered, submitItem];
+  submitItem.value = Number(input.value);
+  insertedValues.push(submitItem);
+  
   wideModal.classList.toggle("no-modal");
-  insertedValuesfiltered.forEach((j) => {
+
+  insertedValues.forEach((j) => {
     register(j);
   });
+  displaySumValue(insertedValues)
 });
 
-const insertBtn = document.querySelectorAll("[data-control-modal]");
-for (let i = 0; i < insertBtn.length; i++) {
-  let btnCategory = insertBtn[i].getAttribute("data-control-modal");
-  insertBtn[i].addEventListener("click", () => {
-    insertBtn[i].classList.toggle("active");
-    submitItem.categoryID = parseInt(btnCategory);
+const categoryBtn = document.querySelectorAll("[data-control-modal]");
+for (let i = 0; i < categoryBtn.length; i++) {
+  let btnCategory = categoryBtn[i].getAttribute("data-control-modal");
+  categoryBtn[i].addEventListener("click", () => {
+    categoryBtn[i].classList.toggle("active");
+    submitItem.categoryID = Number(btnCategory);
   });
 }
 
@@ -86,14 +92,26 @@ function trashBtn(e) {
     
     if (insertedValuesfiltered.length == 1) {
       insertedValuesfiltered.splice(0, 1);
+      insertedValues.splice(0, 1);
       ul.innerHTML = "";
       insertedValuesfiltered.forEach((j) => {
         register(j);
         noRegister()
       })
        displaySumValue(insertedValuesfiltered);
-    } else {
+    } 
+    if(id >= insertedValuesfiltered.length || id >= insertedValuesfiltered.length){
+        insertedValuesfiltered.splice(id-1, 1);
+        insertedValues.splice(id-1, 1);
+        ul.innerHTML = "";
+        insertedValuesfiltered.forEach((j) => {
+          register(j);
+          displaySumValue(insertedValuesfiltered);
+        });
+    }
+    else {
       insertedValuesfiltered.splice(id, 1);
+      insertedValues.splice(id, 1);
       ul.innerHTML = "";
       insertedValuesfiltered.forEach((j) => {
         register(j);

@@ -1,4 +1,5 @@
 function filterCategory(idC){
+    insertedValuesfiltered.splice(0, insertedValuesfiltered.length)
     insertedValues.filter((element) =>{
         if(element.categoryID == idC || idC == 0){
             insertedValuesfiltered.push(element)
