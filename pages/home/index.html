@@ -37,7 +37,7 @@
       </div>
       <div class="total-value">
         <h3>Soma dos valores</h3>
-        <p>R$ 0,00</p>
+        <p id="total-value"></p>
       </div>
       <ul id="ul">
       </ul>
@@ -54,7 +54,7 @@
           <p>Digite o valor e em seguida aperte o botão referente ao tipo de valor</p>
           <div class="input-value">
             <h4>Valor</h4>
-            <input type="text" id="input" placeholder="R$ 00,00">
+            <input type="number" id="input" placeholder="R$ 00,00">
           </div>
           <div class="type-value">
             <h4>Tipo de valor</h4>
@@ -71,7 +71,9 @@
     </div>
 
     <script src="../../scripts/modal.js"></script>
+    <script src="./filters.js"></script>
     <script src="./valuesData.js"></script>
+    <script src="./value.js"></script>
     <script src="./index.js"></script>
   </body>
 </html>

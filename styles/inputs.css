@@ -5,3 +5,8 @@
     border-radius: var(--radius-1);
     background-color: var(--fixed-white);
 }
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
