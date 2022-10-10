@@ -3,7 +3,7 @@ const ul = document.getElementById("ul");
 const submit = document.getElementById("submit");
 const cancel = document.getElementById("cancel");
 
-let idFunction = insertedValues.length;
+let idFunction = insertedValues.length + 1;
 let submitItem = { id: 0, value: 0, categoryID: 0 };
 
 cancel.addEventListener("click", () => {
@@ -21,8 +21,8 @@ submit.addEventListener("click", () => {
 
   wideModal.classList.toggle("no-modal");
 
-  insertedValues.forEach((j) => {
-    register(j);
+  insertedValues.forEach((item) => {
+    register(item);
   });
   displaySumValue(insertedValues)
 });
@@ -59,9 +59,9 @@ function register(element) {
   category.classList.add("category");
   trash.classList.add("trash");
 
-  if(insertedValuesfiltered.length > 0){
+/*   if(insertedValuesfiltered.length > 0){
     element.id = insertedValuesfiltered.length
-  } else {element.id = insertedValues.length}
+  } else {element.id = insertedValues.length} */
 
   newValue.innerText = `R$ ${element.value.toFixed(2)}`;
   category.innerText = showCategory(element.categoryID);
