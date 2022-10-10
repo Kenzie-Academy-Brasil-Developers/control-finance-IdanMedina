@@ -3,8 +3,8 @@ const ul = document.getElementById("ul");
 const submit = document.getElementById("submit");
 const cancel = document.getElementById("cancel");
 
-let idFunction = insertedValues.length + 1;
-let submitItem = { id: idFunction, value: 0, categoryID: 0 };
+let idFunction = insertedValues.length;
+let submitItem = { id: 0, value: 0, categoryID: 0 };
 
 cancel.addEventListener("click", () => {
   wideModal.classList.toggle("no-modal");
@@ -16,25 +16,26 @@ submit.addEventListener("click", () => {
 
   submitItem.id = idFunction;
   submitItem.value = Number(input.value);
-  insertedValues.push(submitItem);
   
+  insertedValues.push(submitItem);
+
   wideModal.classList.toggle("no-modal");
 
   insertedValues.forEach((j) => {
-    console.log(j)
     register(j);
   });
   displaySumValue(insertedValues)
 });
 
 const categoryBtn = document.querySelectorAll("[data-control-modal]");
-for (let i = 0; i < categoryBtn.length; i++) {
-  let btnCategory = categoryBtn[i].getAttribute("data-control-modal");
-  categoryBtn[i].addEventListener("click", () => {
-    categoryBtn[i].classList.toggle("active");
-    submitItem.categoryID = Number(btnCategory);
-  });
-}
+categoryBtn.forEach((button) => {
+  let btnCategory = button.getAttribute("data-control-modal");
+button.addEventListener("click", () => {
+  button.classList.toggle("active");
+  submitItem.categoryID = Number(btnCategory);
+});
+}) 
+
 
 function showCategory(value) {
   let currentCategory = "";
@@ -58,11 +59,15 @@ function register(element) {
   category.classList.add("category");
   trash.classList.add("trash");
 
+  if(insertedValuesfiltered.length > 0){
+    element.id = insertedValuesfiltered.length
+  } else {element.id = insertedValues.length}
+
   newValue.innerText = `R$ ${element.value.toFixed(2)}`;
   category.innerText = showCategory(element.categoryID);
   img.src = "../../assets/trash.png";
-  img.id = element.id - 1;
-  trash.id = element.id - 1;
+  img.id = element.id;
+  trash.id = element.id;
   trashBtn(trash);
 
   boxCtg.appendChild(category);
@@ -83,7 +88,7 @@ function noRegister() {
   ul.append(h3, p);
 }
 
-if (insertedValuesfiltered.length == 0) {
+if (insertedValues.length == 0 || insertedValuesfiltered.length == 0) {
   noRegister();
 }
 
@@ -91,9 +96,9 @@ function trashBtn(e) {
   e.addEventListener("click", (event) => {
     const id = event.target.id;
     
-    if (insertedValuesfiltered.length == 1) {
-      insertedValuesfiltered.splice(0, 1);
+    if (insertedValues.length == 1 || insertedValuesfiltered.length == 1) {
       insertedValues.splice(0, 1);
+      insertedValuesfiltered.splice(0, 1);
       ul.innerHTML = "";
       insertedValuesfiltered.forEach((j) => {
         register(j);
@@ -101,9 +106,9 @@ function trashBtn(e) {
       })
        displaySumValue(insertedValuesfiltered);
     } 
-    if(id >= insertedValuesfiltered.length || id >= insertedValuesfiltered.length){
-        insertedValuesfiltered.splice(id-1, 1);
+    if(id >= insertedValues.length || id >= insertedValuesfiltered.length){
         insertedValues.splice(id-1, 1);
+        insertedValuesfiltered.splice(id-1, 1);
         ul.innerHTML = "";
         insertedValuesfiltered.forEach((j) => {
           register(j);

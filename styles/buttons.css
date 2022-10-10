@@ -67,8 +67,7 @@
     background-color: var(--color-grey-5);
 }
 .active{
-    display: flex;
-    justify-content: flex-start;
+    color: var(--color-brand-1);
 }
 .submit button{
     min-width: 89px;
