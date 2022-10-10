@@ -3,7 +3,7 @@ const ul = document.getElementById("ul");
 const submit = document.getElementById("submit");
 const cancel = document.getElementById("cancel");
 
-let idFunction = insertedValues.length + 1;
+
 let submitItem = { id: 0, value: 0, categoryID: 0 };
 
 cancel.addEventListener("click", () => {
@@ -14,10 +14,13 @@ submit.addEventListener("click", () => {
     ul.innerHTML= "";
     ul.classList.remove("no-value");
 
-  submitItem.id = idFunction;
-  submitItem.value = Number(input.value);
+    let idFunction = insertedValues.length + 1;
+    let newItem = {...submitItem} 
+
+  newItem.id = idFunction;
+  newItem.value = Number(input.value);
   
-  insertedValues.push(submitItem);
+  insertedValues.push(newItem);
 
   wideModal.classList.toggle("no-modal");
 
@@ -69,6 +72,7 @@ function register(element) {
   img.id = element.id;
   trash.id = element.id;
   trashBtn(trash);
+console.log(element.id)
 
   boxCtg.appendChild(category);
   trash.appendChild(img);
